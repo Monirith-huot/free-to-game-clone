@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-
+import {SparklesIcon} from 'react-native-heroicons/solid';
 
 class SplashScreen extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class SplashScreen extends Component {
   render() {
     return (
       <View style={{backgroundColor: '#253237', flex: 1}}>
+        <SparklesIcon />
         <Text> SplashScreen </Text>
       </View>
     );
