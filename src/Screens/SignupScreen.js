@@ -59,8 +59,20 @@ class SignupScreen extends Component {
           <TouchableOpacity style={GStyle.buttonStyle}>
             <Text style={GStyle.buttonStyleText}>Create Account</Text>
           </TouchableOpacity>
+          <Text
+            style={[
+              GStyle.textStyle,
+              {opacity: 0.4, textAlign: 'center', marginBottom: 20},
+            ]}>
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </Text>
 
-          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}>
             <Text style={GStyle.textStyle}>Already a member? </Text>
             <TouchableOpacity
               onPress={() => {

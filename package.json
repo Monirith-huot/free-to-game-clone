@@ -20,6 +20,7 @@
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/stack": "^6.3.10",
     "@reduxjs/toolkit": "^1.9.1",
+    "apisauce": "^2.1.6",
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-gesture-handler": "^2.8.0",
@@ -31,7 +32,9 @@
     "react-native-svg": "^13.6.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
-    "redux-saga": "^1.2.2"
+    "redux-saga": "^1.2.2",
+    "reduxsauce": "^1.2.1",
+    "seamless-immutable": "^7.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

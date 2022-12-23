@@ -3,6 +3,7 @@ import SplashScreen from '../Screens/SplashScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import LoginScreen from '../Screens/LoginScreen';
 import SignupScreen from '../Screens/SignupScreen';
+import ForgetPasswordScreen from '../Screens/ForgetPasswordScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,14 @@ function ScreenNavigation() {
       <Stack.Screen
         name="Signup"
         component={SignupScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="forgetPassowrd"
+        component={ForgetPasswordScreen}
         options={{
           headerShown: false,
         }}

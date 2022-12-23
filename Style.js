@@ -45,5 +45,6 @@ module.exports = StyleSheet.create({
   textStyle: {
     color: '#fff',
     opacity: 0.8,
+    fontSize: 12,
   },
 });

@@ -10,14 +10,23 @@ import {
 } from 'react-native';
 import COLORS from '../contains/pallete';
 import GStyle from './../../Style';
-
+import UserAction from '../Redux/getUserRedux';
+import {connect} from 'react-redux';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userName: '',
+      password: '',
+    };
   }
 
+  componentDidMount() {
+    this.props.getUserData();
+  }
   render() {
+    //TODO: check validation for user and password
+    //TODO valide their input with our api data
     return (
       <SafeAreaView style={[GStyle.screenStyle, {justifyContent: 'center'}]}>
         <View style={{marginLeft: 20, marginRight: 20}}>
@@ -37,19 +46,30 @@ class LoginScreen extends Component {
             style={GStyle.inputStyle}
             placeholder="Username & email"
             placeholderTextColor={COLORS.white}
+            onChangeText={text => this.setState({userName: text})}
+            value={this.state.userName}
           />
 
           <TextInput
             style={GStyle.inputStyle}
             placeholder="Password"
             placeholderTextColor={COLORS.white}
+            onChangeText={text => this.setState({password: text})}
+            value={this.state.password}
           />
 
-          <TouchableOpacity style={GStyle.buttonStyle}>
+          <TouchableOpacity
+            style={GStyle.buttonStyle}
+            // onPress={() =>
+            //   console.log(this.state.userName, this.state.password)
+            // }
+          >
             <Text style={GStyle.buttonStyleText}>Login</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{alignItems: 'center'}}>
+          <TouchableOpacity
+            style={{alignItems: 'center'}}
+            onPress={() => this.props.navigation.navigate('forgetPassowrd')}>
             <Text style={GStyle.TextButtonStyle}>Forgot Password</Text>
           </TouchableOpacity>
 
@@ -74,22 +94,15 @@ class LoginScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  // container: {
-  //   flex: 12,
-  //   justifyContent: 'center',
-  //   backgroundColor: COLORS.background,
-  // },
+function mapStateToProps(state) {
+  return {
+    data: state.user.data,
+  };
+}
+
+// call action from actions
+const mapDispatchToProps = dispatch => ({
+  getUserData: () => dispatch(UserAction.userDataRequest()),
 });
 
-export default LoginScreen;
-
-// <View
-//   style={{
-//     flex: 12,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     backgroundColor: COLORS.background,
-//   }}>
-//   <Text>Log in to FreeToGame</Text>
-// </View>
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
