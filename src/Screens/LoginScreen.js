@@ -44,7 +44,7 @@ class LoginScreen extends Component {
       x => x.email === email && x.password === password,
     );
     if (existsUser) {
-      this.props.navigation.replace('Home');
+      this.props.navigation.replace('HomeScreen');
     } else {
       this.toggleModal();
     }

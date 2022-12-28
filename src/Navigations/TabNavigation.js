@@ -15,7 +15,11 @@ function TabNavigation() {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        tabBarStyle: [{backgroundColor: COLORS.primary}], //WHERE style your Tabbar here
+        tabBarStyle: [
+          {
+            backgroundColor: COLORS.primary,
+          },
+        ], //WHERE style your Tabbar here
         headerShown: false,
         tabBarActiveTintColor: '#fff',
         tabBarIcon: ({color = 'red', size, focused}) => {

@@ -4,6 +4,7 @@ import rootSaga from '../Saga';
 
 const rootReducer = combineReducers({
   user: require('./getUserRedux').reducer,
+  game: require('./getGameRedux').reducer,
 });
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleWare));

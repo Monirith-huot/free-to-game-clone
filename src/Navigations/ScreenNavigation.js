@@ -19,7 +19,7 @@ function ScreenNavigation() {
       />
 
       <Stack.Screen
-        name="Home"
+        name="HomeScreen"
         component={TabNavigation}
         options={{headerShown: false}}
       />

@@ -3,12 +3,12 @@ import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
 const {Types, Creators} = createActions({
-  GameDataRequest: null,
-  GameDataSuccess: ['data'],
-  GameDataFailure: ['error'],
+  gameDataRequest: null,
+  gameDataSuccess: ['data'],
+  gameDataFailure: ['error'],
 });
 
-export const UserTypes = Types;
+export const GameTypes = Types;
 export default Creators;
 
 /* ------------- Initial State ------------- */
@@ -21,11 +21,11 @@ export const INITIAL_STATE = Immutable({
 });
 
 /* ------------- Reducers ------------- */
-export const requestUserData = state => {
+export const requestGameData = state => {
   return state.merge({fetchingData: true});
 };
 
-export const successUserData = (state, {data}) => {
+export const successGameData = (state, {data}) => {
   return state.merge({
     fetchingData: false,
     error: null,
@@ -33,7 +33,7 @@ export const successUserData = (state, {data}) => {
     fetchedData: true,
   });
 };
-export const failureUserData = (state, {data}) => {
+export const failureGameData = (state, {data}) => {
   return state.merge({
     fetchingData: false,
     error: true,
@@ -43,7 +43,7 @@ export const failureUserData = (state, {data}) => {
 };
 /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.USER_DATA_REQUEST]: requestUserData,
-  [Types.USER_DATA_SUCCESS]: successUserData,
-  [Types.USER_DATA_FAILURE]: failureUserData,
+  [Types.GAME_DATA_REQUEST]: requestGameData,
+  [Types.GAME_DATA_SUCCESS]: successGameData,
+  [Types.GAME_DATA_FAILURE]: failureGameData,
 });
