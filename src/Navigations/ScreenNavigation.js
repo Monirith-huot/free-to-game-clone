@@ -4,7 +4,7 @@ import HomeScreen from '../Screens/HomeScreen';
 import LoginScreen from '../Screens/LoginScreen';
 import SignupScreen from '../Screens/SignupScreen';
 import ForgetPasswordScreen from '../Screens/ForgetPasswordScreen';
-
+import TabNavigation from './TabNavigation';
 const Stack = createStackNavigator();
 
 function ScreenNavigation() {
@@ -17,7 +17,12 @@ function ScreenNavigation() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Home" component={HomeScreen} />
+
+      <Stack.Screen
+        name="Home"
+        component={TabNavigation}
+        options={{headerShown: false}}
+      />
 
       <Stack.Screen
         name="Signup"

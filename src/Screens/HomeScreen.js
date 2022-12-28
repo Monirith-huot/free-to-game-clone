@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-
+import { View, Text , SafeAreaView} from 'react-native';
+import GStyle from './../../Style';
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -10,10 +10,9 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View>
-        <Text> HomeScreen </Text>
+      <SafeAreaView style={[GStyle.screenStyle]}>
         
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -4,29 +4,55 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   Image,
+  TextInput,
+  Button,
 } from 'react-native';
 import COLORS from '../contains/pallete';
 import GStyle from './../../Style';
 import UserAction from '../Redux/getUserRedux';
 import {connect} from 'react-redux';
+import Modal from 'react-native-modal';
+
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
+      email: '',
       password: '',
+      isModalVisible: false,
     };
   }
 
+  toggleModal = () => {
+    this.setState({isModalVisible: !this.state.isModalVisible});
+    this.setState({email: '', password: ''});
+  };
+
+  users = [
+    {
+      email: 'admin',
+      password: 'admin',
+    },
+  ];
+
+  authenticated() {
+    let email = this.state.email;
+    let password = this.state.password;
+    let existsUser = this.users.find(
+      x => x.email === email && x.password === password,
+    );
+    if (existsUser) {
+      this.props.navigation.replace('Home');
+    } else {
+      this.toggleModal();
+    }
+  }
   componentDidMount() {
     this.props.getUserData();
   }
   render() {
-    //TODO: check validation for user and password
-    //TODO valide their input with our api data
     return (
       <SafeAreaView style={[GStyle.screenStyle, {justifyContent: 'center'}]}>
         <View style={{marginLeft: 20, marginRight: 20}}>
@@ -44,10 +70,11 @@ class LoginScreen extends Component {
 
           <TextInput
             style={GStyle.inputStyle}
-            placeholder="Username & email"
+            placeholder="Email"
             placeholderTextColor={COLORS.white}
-            onChangeText={text => this.setState({userName: text})}
-            value={this.state.userName}
+            onChangeText={text => this.setState({email: text})}
+            value={this.state.email}
+            autoCapitalize="none"
           />
 
           <TextInput
@@ -56,16 +83,55 @@ class LoginScreen extends Component {
             placeholderTextColor={COLORS.white}
             onChangeText={text => this.setState({password: text})}
             value={this.state.password}
+            autoCapitalize="none"
+            secureTextEntry={true}
           />
 
           <TouchableOpacity
             style={GStyle.buttonStyle}
-            // onPress={() =>
-            //   console.log(this.state.userName, this.state.password)
-            // }
-          >
+            onPress={() => this.authenticated()}>
             <Text style={GStyle.buttonStyleText}>Login</Text>
           </TouchableOpacity>
+
+          <Modal
+            animationIn={'bounceIn'}
+            animationOut={'bounceOut'}
+            isVisible={this.state.isModalVisible}
+            onBackdropPress={() => this.toggleModal()}>
+            <View
+              style={{
+                backgroundColor: COLORS.background,
+                padding: 30,
+              }}>
+              <Text
+                style={{
+                  color: '#fff',
+                  textAlign: 'center',
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  marginBottom: 20,
+                }}>
+                Please try again
+              </Text>
+              <Text style={{textAlign: 'center', color: '#fff'}}>
+                The Email and Password you entered did not match our records.
+                Please double check and try again.
+              </Text>
+
+              <TouchableOpacity
+                onPress={() => this.toggleModal()}
+                style={{marginTop: 20}}>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    color: COLORS.blue,
+                    fontWeight: 'bold',
+                  }}>
+                  Try again
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
 
           <TouchableOpacity
             style={{alignItems: 'center'}}
